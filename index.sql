@@ -22,9 +22,9 @@ CREATE TABLE department (
 
 CREATE TABLE employee (
     emp_id VARCHAR(5) NOT NULL,
-    emp_fname VARCHAR(25),
-    emp_init VARCHAR(5),
-    emp_lname VARCHAR(25),    
+    emp_fname VARCHAR(25),    
+    emp_lname VARCHAR(25),
+    emp_init VARCHAR(5),    
     emp_phone VARCHAR(25),
     emp_email VARCHAR(50),
     emp_address VARCHAR(50),
@@ -46,18 +46,19 @@ ADD FOREIGN KEY(emp_id) REFERENCES employee(emp_id) ON DELETE SET NULL;
 
 CREATE TABLE student (
     stud_id INT NOT NULL,
-    stud_fname VARCHAR(25) NOT NULL,
-    stud_init VARCHAR(5),
-    stud_lname VARCHAR(25) NOT NULL,    
+    stud_fname VARCHAR(25) NOT NULL,    
+    stud_lname VARCHAR(25) NOT NULL,
+    stud_init VARCHAR(5),    
     stud_phone VARCHAR(15) NOT NULL,
     stud_email VARCHAR(50) NOT NULL,
     stud_address VARCHAR(50),
     stud_dob DATE,
     stud_gender CHAR(1),
     stud_major VARCHAR(50) NOT NULL,
+    stud_gpa DECIMAL(4,2),
     stud_employment VARCHAR(3),
     stud_marriage VARCHAR(10),
-    dept_code INT,
+    dept_code VARCHAR(5),
     FOREIGN KEY(dept_code) REFERENCES department(dept_code) ON DELETE SET NULL,
     PRIMARY KEY(stud_id)
 );
@@ -68,8 +69,8 @@ CREATE TABLE program (
     prog_id VARCHAR(5) NOT NULL,
     prog_name VARCHAR(75),
     prog_duration VARCHAR(15),
-    prog_cost DECIMAL(10,0),
-    dept_code INT,
+    prog_cost DECIMAL(10,2),
+    dept_code VARCHAR(5),
     FOREIGN KEY(dept_code) REFERENCES department(dept_code) ON DELETE SET NULL,
     PRIMARY KEY(prog_id)
 );
@@ -91,11 +92,11 @@ CREATE TABLE course(
 --  Class Table
 
 CREATE TABLE class(
-    class_code VARCHAR(5) NOT NULL,
+    class_code VARCHAR(7) NOT NULL,
     class_start_time TIME,
     class_stop_time TIME,
     lec_id VARCHAR(5),
-    semester_code VARCHAR(5),
+    semester_code VARCHAR(15),
     room_id VARCHAR(5),
     course_code VARCHAR(5),
     FOREIGN KEY(lec_id) REFERENCES employee(emp_id) ON DELETE SET NULL,
@@ -133,7 +134,7 @@ ADD FOREIGN KEY(room_id) REFERENCES room(room_id) ON DELETE SET NULL;
 -- Building Table
 
 CREATE TABLE building(
-    building_id VARCHAR(25) NOT NULL,
+    building_id VARCHAR(7) NOT NULL,
     building_name VARCHAR(75),
     PRIMARY KEY(building_id)
 );
@@ -146,7 +147,7 @@ ADD FOREIGN KEY(building_id) REFERENCES building(building_id) ON DELETE SET NULL
 -- Enrollment Table consist of composite PRIMARY KEYS
 
 CREATE TABLE enrollment(
-    class_code VARCHAR(5) NOT NULL,
+    class_code VARCHAR(7) NOT NULL,
     stud_id INT NOT NULL,
     FOREIGN KEY(class_code) REFERENCES class(class_code),
     FOREIGN KEY(stud_id) REFERENCES student(stud_id),
@@ -216,9 +217,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
     'MMJ',
-    'Mgngeh',
-     'M',
-    'Joof',   
+    'Mgngeh',     
+    'Joof',  
+    'M', 
     '3506701',
     'mjoof@mdi.edu.gm',
     'Kanifing',
@@ -233,8 +234,8 @@ INSERT INTO employee
 VALUES(
     'YKC',
     'Yankuba',
-    '',
-    'Camara',    
+    'Camara', 
+	     '',   
     '3506701',
     'ycamara@mdi.edu.gm',
     'Brufut',
@@ -248,9 +249,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
     'EBJ',
-    'Ebou',
-    '',
+    'Ebou',    
     'Badjie',    
+    '',
     '9930876',
     'ebadjie@mdi.edu.gm',
     'Serekunda',
@@ -264,9 +265,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
     'MMB',
-    'Matt',
+    'Matt',    
+    'Mbye',
     '',
-    'Mbye',    
     '9930876',
     'mmybe@mdi.edu.gm',
     'Bijilo',
@@ -280,9 +281,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
     'MLJ',
-    'Malang',
-    'M',
-    'Jarju',    
+    'Malang',    
+    'Jarju', 
+    'M',   
     '3830523',
     'mjarju@mdi.edu.gm',
     'Costal Road',
@@ -296,9 +297,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
     'BBJ',
-    'Bubacarr',
-    '',
-    'Jallow',    
+    'Bubacarr',    
+    'Jallow',
+    '',    
     '7659088',
     'bjallow@mdi.edu.gm',
     'Brikama',
@@ -312,9 +313,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
     'FTJ',
-    'Fatima',
-    '',
-    'Jobe',    
+    'Fatima',    
+    'Jobe',  
+    '',  
     '6549086',
     'fjobe@mdi.edu.gm',
     'Serekunda',
@@ -328,9 +329,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
     'JSY',
-    'Jainaba',
-    '',
-    'Saidy',    
+    'Jainaba',    
+    'Saidy',
+    '',    
     '5670094',
     'jsaidy@mdi.edu.gm',
     'Bakua',
@@ -344,9 +345,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
     'LJM',
-    'Lamin',
-    '',
-    'Jammeh',    
+    'Lamin',    
+    'Jammeh',
+    '',    
     '2344800',
     'ljammeh@mdi.edu.gm',
     'Sukuta',
@@ -360,9 +361,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
    'MHC',
-    'Muhammed',
-    '',
+    'Muhammed',    
     'Cham',    
+    '',
     '2344800',
     'mcham@mdi.edu.gm',
     'Banjul',
@@ -376,9 +377,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
     'FTK',
-    'Fatou',
-    '',
-    'Kinteh',    
+    'Fatou',    
+    'Kinteh',
+    '',    
     '9007865',
     'fkinteh@mdi.edu.gm',
     'Pipeline',
@@ -392,9 +393,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
     'ADC',
-    'Adb Ala ',
-    '',
-    'Camara',    
+    'Adb Ala ',    
+    'Camara',  
+    '',  
     '2277552',
     'yiramang@gmail.com',
     'Burusibi',
@@ -408,9 +409,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
     'LOT',
-    'Lamin',
-    'O',
-    'Touray',    
+    'Lamin',    
+    'Touray',
+    'O',    
     '2277552',
     '2raymoori@gmail.com',
     'Lamin Village',
@@ -424,9 +425,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
     'LGM',
-    'Lang',
-    '',
+    'Lang',    
     'Loum',
+    '',
     '9100005',
     'lloum@utg.edu.gm',
     'Serekunda',
@@ -440,9 +441,9 @@ VALUES(
 INSERT INTO employee
 VALUES(
     'ALB',
-    'Alan',
-    '',
+    'Alan',    
     'Abass',
+    '',
     '3113217',
     'alan@mdi.edu.gm',
     'Bakuteh',
@@ -589,7 +590,7 @@ VALUES(
     'Information Com. Technology',
     'Department',
     50,
-    NULL
+    'NDCS'
 );
 
 INSERT INTO course
@@ -600,7 +601,7 @@ VALUES(
     'Information Com. Technology',
     'Department',
     50,
-    NULL
+    'NDCS'
 );
 
 INSERT INTO course
@@ -655,7 +656,7 @@ VALUES(
     'Information Com. Technology',
     'Department',
     50,
-    NULL
+    'NDCS'
 );
 
 INSERT INTO course
@@ -666,7 +667,7 @@ VALUES(
     'Information Com. Technology',
     'Department',
     50,
-    NULL
+    'CSCNA'
 );
 
 INSERT INTO course
@@ -677,7 +678,7 @@ VALUES(
     'Information Com. Technology',
     'Department',
     50,
-    NULL
+    'NDCS'
 );
 
 INSERT INTO course
@@ -699,7 +700,7 @@ VALUES(
     'Information Com. Technology',
     'Department',
     50,
-    NULL
+    'NDCS'
 );
 
 INSERT INTO course
@@ -710,7 +711,7 @@ VALUES(
     'Information Com. Technology',
     'Department',
     50,
-    NULL
+    'NDCS'
 );
 
 INSERT INTO course
@@ -719,42 +720,21 @@ VALUES(
     'Intro ICT',
     '03:00:00',
     'Information Com. Technology',
-    'Department',
+    'General',
     50,
     NULL
 );
 
-UPDATE mdiproject.course
-SET prog_id='MPA' 
-WHERE  course_code='ENG2';
-
-UPDATE mdiproject.course
-SET prog_id='NDCS' 
-WHERE  course_code='NTW1';
-
-UPDATE mdiproject.course
-SET prog_id='NDCS' 
-WHERE  course_code='NTW1';
-
-UPDATE mdiproject.course
-SET prog_id='NDCS' 
-WHERE  course_code='DB1';
-
-UPDATE mdiproject.course
-SET prog_id='NDCS' 
-WHERE  course_code='WEB2';
-
-UPDATE mdiproject.course
-SET prog_id='NDCS' 
-WHERE  course_code='WEB1';
-
-UPDATE mdiproject.course
-SET prog_id='NDCS' 
-WHERE  course_code='PLD';
-
-UPDATE mdiproject.course
-SET prog_id='NDCS' 
-WHERE  course_code='IT';
+INSERT INTO course
+VALUES(
+    'DB2',
+    'Database 2',
+    '03:00:00',
+    'Information Com. Technology',
+    'Department',
+    50,
+    'NDCS'
+);
 
 
 -- student table
@@ -762,15 +742,16 @@ WHERE  course_code='IT';
 INSERT INTO student
 VALUES(
     0536,
-    'Ebrima',
-    '',
+    'Ebrima',    
     'Touray',
+    '',
     '3119658',
     'touraye07@gmail.com',
     'Jambanjelly',
     '1992-03-20',
     'M',
     'Computer Sci',
+    4.0,
     'No',
     'No',
     'ICT'
@@ -779,15 +760,16 @@ VALUES(
 INSERT INTO student
 VALUES(
     526,
-    'Ebrima',
-    '',
+    'Ebrima',    
     'Trawally',
+    '',
     '3693790',
     'etrawally@gmail.com',
     'Lamin Village',
     '1990-10-10',
     'M',
     'Cisco',
+    3.85,
     'Yes',
     'No',
     'ICT'
@@ -796,15 +778,16 @@ VALUES(
 INSERT INTO student
 VALUES(
     606,
-    'Bakarry',
-    '',
+    'Bakarry',    
     'Manneh',
+    '',
     '3915447',
     'bmanneh@gmail.com',
     'Jambanjelly',
     '1998-08-20',
     'M',
     'Management Studies',
+    3.60,
     'No',
     'No',
     'MPA'
@@ -813,15 +796,16 @@ VALUES(
 INSERT INTO student
 VALUES(
     601,
-    'Alasana',
-    '',
+    'Alasana',    
     'Camara',
+    '',
     '2135451',
     'alasana101@yahoo.com',
     'Bundung',
     '1989-08-20',
     'M',
     'Computr Sci',
+    3.94,
     'Yes',
     'Yes',
     'ICT'
@@ -830,15 +814,16 @@ VALUES(
 INSERT INTO student
 VALUES(
     409,
-    'Lamin',
-    '',
+    'Lamin',    
     'Gibba',
+    '',
     '3521529',
     'gibbal339@gmail.com',
     'Abuko',
     '1994-08-24',
     'M',
     'Computr Sci',
+    3.78,
     'Yes',
     'Yes',
     'ICT'
@@ -847,15 +832,16 @@ VALUES(
 INSERT INTO student
 VALUES(
     509,
-    'Essu',
-    '',
+    'Essu',    
     'Fonny',
+    '',
     '2628280',
     'cookfonny@gmail.com',
     'Brikama',
     '1997-08-20',
     'M',
     'Computr Sci',
+    2.89,
     'Yes',
     'No',
     'ICT'
@@ -864,15 +850,16 @@ VALUES(
 INSERT INTO student
 VALUES(
     551,
-    'Fatou',
-    '',
+    'Fatou',    
     'Jarju',
+    '',
     '7319053',
     'jarjuf11@gmail.com',
     'Abuko',
     '2000-01-01',
     'F',
     'Banking and Finance',
+    2.34,
     'No',
     'No',
     'BNKFI'
@@ -881,15 +868,16 @@ VALUES(
 INSERT INTO student
 VALUES(
     808,
-    'Jankey',
-    '',
+    'Jankey',    
     'Jammeh',
+    '',
     '3451732',
     'jankeyjammeh534@gmail.com',
     'Bakou',
     '1999-12-31',
     'F',
     'Gender and Development',
+    3.65,
     'No',
     'No',
     'GND'
@@ -898,15 +886,16 @@ VALUES(
 INSERT INTO student
 VALUES(
     809,
-    'Aisha',
-    '',
+    'Aisha',    
     'Drammeh',
+    '',
     '2052619',
     'drammeha4@gmail.com',
     'Bakou',
     '1999-09-09',
     'F',
     'Business Studies',
+    3.40,
     'No',
     'Yes',
     'BSS'
@@ -923,21 +912,21 @@ VALUES(
 
 INSERT INTO semester
 VALUES(   
-   'Jul-Dec2019',   
+   'Jul-Dec 2019',   
    '2019-06-12',
    '2019-12-20'
 );
 
 INSERT INTO semester
 VALUES(   
-   'Jan-Jun2020',   
+   'Jan-Jun 2020',   
    '2020-01-14',
    '2019-06-12'
 );
 
 INSERT INTO semester
 VALUES(   
-   'Jul-Dec2020',   
+   'Jul-Dec 2020',   
    '2020-06-24',
    '2019-12-22'
 );
@@ -950,9 +939,9 @@ VALUES(
     '10:00:00',
     '13:00:00',
     'ADC',
-    'Jul-Dec2019',
     NULL,
-    ''
+    NULL,
+    'WEB1'
 );
 
 INSERT INTO class
@@ -961,9 +950,9 @@ VALUES(
     '09:30:00',
     '12:30:00',
     'LOT',
-    'JAN-JUN2020',
     NULL,
-    ''
+    NULL,
+    'JV1'
 );
 
 INSERT INTO class
@@ -972,9 +961,9 @@ VALUES(
     '10:30:00',
     '13:30:00',
     'ALB',
-    'JUL-DEC2019',
     NULL,
-    ''
+    NULL,
+    'NTW1'
 );
 
 INSERT INTO class
@@ -983,9 +972,9 @@ VALUES(
     '08:45:00',
     '09:45:00',
     'FTK',
-    'JAN-JUN2020',
     NULL,
-    ''
+    NULL,
+    'GND1'
 );
 
 INSERT INTO class
@@ -994,9 +983,9 @@ VALUES(
     '12:45:00',
     '13:45:00',
     'MMB',
-    'JAN-JUL2020',
     NULL,
-    ''
+    NULL,
+    'ENG1'
 );
 
 INSERT INTO class
@@ -1004,21 +993,21 @@ VALUES(
     'BST01',
     '12:45:00',
     '13:45:00',
-    '',
-    'JAN-JUL2020',
+    'YKC',
     NULL,
-    ''
+    NULL,
+    'BST1'
 );
 
 INSERT INTO class
 VALUES(
-    'WED02',
+    'WEB102',
     '10:00:00',
     '13:00:00',
     'ADC',
-    'JAN-JUN2020',
     NULL,
-    ''
+    NULL,
+    'WEB2'
 );
 
 INSERT INTO class
@@ -1027,9 +1016,9 @@ VALUES(
     '14:30:00',
     '17:30:00',
     'LGM',
-    'JAN-JUN2020',
     NULL,
-    ''
+    NULL,
+    'PLD'
 );
 
 INSERT INTO class
@@ -1038,86 +1027,64 @@ VALUES(
     '10:30:00',
     '13:30:00',
     'ADC',
-    'JUL-DEC2019',
     NULL,
-    ''
+    NULL,
+    'DB1'
 );
 
--- update class tble, add course code
+INSERT INTO class
+VALUES(
+    'DB02',
+    '10:30:00',
+    '13:30:00',
+    'ADC',
+    NULL,
+    NULL,
+    'DB2'
+);
 
-UPDATE mdiproject.class
-SET course_code = 'WEB1'
-WHERE class_code = 'WEB01';
+-- update class tble, add semester code
 
-UPDATE mdiproject.class
-SET course_code = 'JV1'
-WHERE class_code = 'JAVA1';
+UPDATE mdiproject.class 
+SET semester_code = 'Jan-Jun 2019'
+WHERE  class_code = 'WEB101';
 
-UPDATE mdiproject.class
-SET course_code = 'NTW1'
-WHERE class_code = 'NTW01';
+UPDATE mdiproject.class 
+SET semester_code = 'Jan-Jun 2020'
+WHERE  class_code = 'JAVA1';
 
-UPDATE mdiproject.class
-SET course_code = 'GN1'
-WHERE class_code = 'GND01';
+UPDATE mdiproject.class 
+SET semester_code = 'Jul-Dec 2019'
+WHERE  class_code = 'NET01';
 
-UPDATE mdiproject.class
-SET course_code = 'ENG1'
-WHERE class_code = 'ENG01';
+UPDATE mdiproject.class 
+SET semester_code = 'Jan-Jun 2020'
+WHERE  class_code = 'GND01';
 
-UPDATE mdiproject.class
-SET course_code = 'BST1'
-WHERE class_code = 'BST01';
+UPDATE mdiproject.class 
+SET semester_code = 'Jan-Jun 2020'
+WHERE  class_code = 'ENG01';
 
-UPDATE mdiproject.class
-SET course_code = 'WEB2'
-WHERE class_code = 'WEB02';
+UPDATE mdiproject.class 
+SET semester_code = 'Jan-Jun 2020'
+WHERE  class_code = 'BST01';
 
-UPDATE mdiproject.class
-SET course_code = 'PLD'
-WHERE class_code = 'PLD01';
+UPDATE mdiproject.class 
+SET semester_code = 'Jul-Dec 2020'
+WHERE  class_code = 'WEB102';
 
-UPDATE mdiproject.class
-SET course_code = 'DB1'
-WHERE class_code = 'DB01';
+UPDATE mdiproject.class 
+SET semester_code = 'Jan-Jun 2019'
+WHERE  class_code = 'PLD01';
 
--- update class table , add room idd
+UPDATE mdiproject.class 
+SET semester_code = 'Jul-Dec 2019'
+WHERE  class_code = 'DB01';
 
-UPDATE mdiproject.class
-SET room_id = 'ITLB2'
-WHERE class_code = 'WEB01';
+UPDATE mdiproject.class 
+SET semester_code = 'Jul-Dec 2020'
+WHERE  class_code = 'DB02';
 
-UPDATE mdiproject.class
-SET room_id = 'ITLB'
-WHERE class_code = 'JAVA1';
-
-UPDATE mdiproject.class
-SET room_id = 'ITLB2'
-WHERE class_code = 'NET01';
-
-UPDATE mdiproject.class
-SET room_id = 'JK14'
-WHERE class_code = 'GND01';
-
-UPDATE mdiproject.class
-SET room_id = 'JK14'
-WHERE class_code = 'ENG01';
-
-UPDATE mdiproject.class
-SET room_id = 'JK14'
-WHERE class_code = 'BST01';
-
-UPDATE mdiproject.class
-SET room_id = 'ITLB2'
-WHERE class_code = 'WEB02';
-
-UPDATE mdiproject.class
-SET room_id = 'ITLB'
-WHERE class_code = 'PLD01';
-
-UPDATE mdiproject.class
-SET room_id = 'ITLB'
-WHERE class_code = 'DB01';
 
 -- building table
 
@@ -1194,5 +1161,188 @@ INSERT INTO room
 VALUES(
     'JM10',
     'Class Room',
-    'UGTBKL'
+    'UTGBLK'
+);
+
+INSERT INTO room
+VALUES(
+    'ITLB1',
+    'IT LAB',
+    'MBKL'
+);
+
+-- update class table , add room idd
+
+UPDATE mdiproject.class
+SET room_id = 'ITLB2'
+WHERE class_code = 'WEB101';
+
+UPDATE mdiproject.class
+SET room_id = 'ITLB2'
+WHERE class_code = 'JAVA1';
+
+UPDATE mdiproject.class
+SET room_id = 'ITLB2'
+WHERE class_code = 'NET01';
+
+UPDATE mdiproject.class
+SET room_id = 'KJ14'
+WHERE class_code = 'GND01';
+
+UPDATE mdiproject.class
+SET room_id = 'KJ14'
+WHERE class_code = 'ENG01';
+
+UPDATE mdiproject.class
+SET room_id = 'KJ14'
+WHERE class_code = 'BST01';
+
+UPDATE mdiproject.class
+SET room_id = 'ITLB2'
+WHERE class_code = 'WEB102';
+
+UPDATE mdiproject.class
+SET room_id = 'ITLB1'
+WHERE class_code = 'PLD01';
+
+UPDATE mdiproject.class
+SET room_id = 'ITLB2'
+WHERE class_code = 'DB01';
+
+UPDATE mdiproject.class
+SET room_id = 'ITLB1'
+WHERE class_code = 'DB02';
+
+
+-- enrollment table 
+INSERT INTO enrollment
+VALUES (
+    'DB01',
+    536
+);
+
+INSERT INTO enrollment
+VALUES (
+    'DB02',
+    536
+);
+
+INSERT INTO enrollment
+VALUES (
+    'WEB101',
+    536
+);
+
+INSERT INTO enrollment
+VALUES (
+    'WEB102',
+    536
+);
+
+INSERT INTO enrollment
+VALUES (
+    'JAVA1',
+    536
+);
+
+INSERT INTO enrollment
+VALUES (
+    'JAVA1',
+    409
+);
+
+INSERT INTO enrollment
+VALUES (
+    'WEB102',
+    409
+);
+
+INSERT INTO enrollment
+VALUES (
+    'WEB101',
+    509
+);
+
+INSERT INTO enrollment
+VALUES (
+    'DB01',
+    809
+);
+
+INSERT INTO enrollment
+VALUES (
+    'DB02',
+    809
+);
+
+INSERT INTO enrollment
+VALUES (
+    'ENG01',
+    536
+);
+
+INSERT INTO enrollment
+VALUES (
+    'BST01',
+    536
+);
+
+INSERT INTO enrollment
+VALUES (
+    'GND01',
+    536
+);
+
+INSERT INTO enrollment
+VALUES (
+    'NET01',
+    536
+);
+
+INSERT INTO enrollment
+VALUES (
+    'NET01',
+    809
+);
+
+INSERT INTO enrollment
+VALUES (
+    'GND01',
+    809
+);
+
+INSERT INTO enrollment
+VALUES (
+    'GND01',
+    601
+);
+
+INSERT INTO enrollment
+VALUES (
+    'WEB101',
+    601
+);
+
+INSERT INTO enrollment
+VALUES (
+    'WEB102',
+    601
+);
+
+INSERT INTO enrollment
+VALUES (
+    'JAVA1',
+    601
+);
+
+INSERT INTO enrollment
+VALUES (
+    'JAVA1',
+    551
+);
+
+INSERT INTO enrollment
+VALUES (
+    'GND01',
+    551
 );
