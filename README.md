@@ -1,4 +1,4 @@
-# Sample Collage Database Management System
+# Collage Database Management System
 
 
 
