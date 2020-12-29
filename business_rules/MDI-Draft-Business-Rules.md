@@ -36,3 +36,25 @@
 8. SEMESTER
 9. ROOM
 10. BUILDING
+
+### Data Types 
+
+The table shows the the name and types use for department table
+
+| Column    | Types       |
+| --------- | ----------- |
+| dept_code | VARCHAR(5)  |
+| dept_name | VARCHAR(75) |
+| dept_head | VARCHAR(50) |
+| emp_id    | VARCHAR(5)  |
+
+### Components of the ERM
+
+| Entity     | Relationship | Connectivity | Entity     |
+| ---------- | ------------ | ------------ | ---------- |
+| Department | Runs         | 1:M          | Programs   |
+| Program    | Include      | 1:M          | Course     |
+| Program    | Has          | 1:M          | Student    |
+| Student    | Enroll       | N:M          | Class      |
+| Lecturer   | Administer   | 1:1          | Department |
+
