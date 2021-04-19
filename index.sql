@@ -736,6 +736,73 @@ VALUES(
     'NDCS'
 );
 
+INSERT INTO course
+VALUES(
+    'COM-SCI',
+    'Intro Com Sci',
+    '03:00:00',
+    'Information Com. Technology',
+    'Department',
+    50,
+    'NDCS'
+);
+
+INSERT INTO course
+VALUES(
+    'COM-SEC',
+    'Com Security',
+    '03:00:00',
+    'Information Com. Technology',
+    'Department',
+    50,
+    'NDCS'
+);
+
+INSERT INTO course
+VALUES(
+    'IT-H&S',
+    'IT Hardware & Systems',
+    '03:00:00',
+    'Information Com. Technology',
+    'Department',
+    50,
+    'NDCS'
+);
+
+INSERT INTO course
+VALUES(
+    'JR-PRO',
+    'Junior Project',
+    '02:00:00',
+    'Information Com. Technology',
+    'Department',
+    50,
+    'NDCS'
+);
+
+INSERT INTO course
+VALUES(
+    'OS',
+    'Operating System',
+    '03:00:00',
+    'Information Com. Technology',
+    'Department',
+    50,
+    'NDCS'
+);
+
+INSERT INTO course
+VALUES(
+    'JV2',
+    'Java Intro to Programming',
+    '03:00:00',
+    'Information Com. Technology',
+    'Department',
+    50,
+    'NDCS'
+);
+
+
 
 -- student table
 
@@ -931,6 +998,13 @@ VALUES(
    '2019-12-22'
 );
 
+INSERT INTO semester
+VALUES(   
+   'Jan-Jun 2021',   
+   '2021-02-24',
+   '2021-06-22'
+);
+
 -- class table
 
 INSERT INTO class
@@ -1043,6 +1117,63 @@ VALUES(
     'DB2'
 );
 
+INSERT INTO class
+VALUES(
+    'INTRO-COM-SCI',
+    '08:30:00',
+    '11:30:00',
+    'MLJ',
+    NULL,
+    NULL,
+    'COM-SCI'
+);
+
+INSERT INTO class
+VALUES(
+    'CM-SEC',
+    '03:00:00',
+    '05:00:00',
+    'EBJ',
+    NULL,
+    NULL,
+    'COM-SEC'
+);
+
+INSERT INTO class
+VALUES(
+    'H&S',  
+    '12:30:00',
+    '03:30:00',
+    'ALB',
+    NULL,
+    NULL,
+    'IT-H&S'
+);
+
+INSERT INTO class
+VALUES(
+    'JR-P',  
+    '12:30:00',
+    '01:30:00',
+    'MLJ',
+    NULL,
+    NULL,
+    'JR-PRO'
+);
+
+INSERT INTO class
+VALUES(
+    'JAVA2',  
+    '02:15:00',
+    '05:15:00',
+    'LOT',
+    NULL,
+    NULL,
+    'JV2'
+);
+
+
+
 -- update class tble, add semester code
 
 UPDATE mdiproject.class 
@@ -1084,6 +1215,28 @@ WHERE  class_code = 'DB01';
 UPDATE mdiproject.class 
 SET semester_code = 'Jul-Dec 2020'
 WHERE  class_code = 'DB02';
+
+UPDATE mdiproject.class
+SET semester_code = 'Jan-Jun 2021'
+WHERE class_code = 'INTRO-COM-SCI';
+
+UPDATE mdiproject.class
+SET semester_code = 'Jan-Jun 2021'
+WHERE class_code = 'CM-SEC';
+
+UPDATE mdiproject.class
+SET semester_code = 'Jan-Jun 2021'
+WHERE class_code = 'JR-P';
+
+UPDATE mdiproject.class
+SET semester_code = 'Jan-Jun 2021'
+WHERE class_code = 'H&S';
+
+UPDATE mdiproject.class
+SET semester_code = 'Jan-Jun 2021'
+WHERE class_code = 'JAVA2';
+
+
 
 
 -- building table
@@ -1212,6 +1365,26 @@ WHERE class_code = 'DB01';
 UPDATE mdiproject.class
 SET room_id = 'ITLB1'
 WHERE class_code = 'DB02';
+
+UPDATE mdiproject.class
+SET room_id = 'ITLB2'
+WHERE class_code = 'CM-SEC';
+
+UPDATE mdiproject.class
+SET room_id = 'ITLB1'
+WHERE class_code = 'INTRO-COM-SCI';
+
+UPDATE mdiproject.class
+SET room_id = 'ITLB1'
+WHERE class_code = 'H&S';
+
+UPDATE mdiproject.class
+SET room_id = 'ITLB1'
+WHERE class_code = 'JAVA2';
+
+UPDATE mdiproject.class
+SET room_id = 'ITLB1'
+WHERE class_code = 'JR-p';
 
 
 -- enrollment table 
@@ -1345,4 +1518,46 @@ INSERT INTO enrollment
 VALUES (
     'GND01',
     551
+);
+
+INSERT INTO enrollment
+VALUES (
+    'JAVA2',
+    536
+);
+
+INSERT INTO enrollment
+VALUES (
+    'JAVA2',
+    551
+);
+
+INSERT INTO enrollment
+VALUES (
+    'JAVA2',
+    601
+);
+
+INSERT INTO enrollment
+VALUES (
+    'JR-P',
+    536
+);
+
+INSERT INTO enrollment
+VALUES (
+    'H&S',
+    536
+);
+
+INSERT INTO enrollment
+VALUES (
+    'CM-SEC',
+    536
+);
+
+INSERT INTO enrollment
+VALUES (
+    'INTRO-COM-SCI',
+    536
 );
